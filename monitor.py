@@ -166,26 +166,17 @@ async def check():
 # -------------------------
 
 async def main():
-
     print("=" * 60)
     print("PTU Placement Monitor Started")
     print("=" * 60)
 
-    while True:
+    try:
+        await check()
+        print("✅ Check completed.")
 
-        try:
-
-            await check()
-
-        except Exception as e:
-
-            print("Error:", e)
-
-        print("Next check in 5 minutes...\n")
-
-        await asyncio.sleep(CHECK_INTERVAL)
+    except Exception as e:
+        print("❌ Error:", e)
 
 
 if __name__ == "__main__":
-
     asyncio.run(main())
